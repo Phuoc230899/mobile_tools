@@ -14,8 +14,6 @@ class Save2Gallery {
     String contentType = response.headers['content-type'] ?? '';
     if (contentType.contains('image')) {
       if (response.statusCode == 200) {
-        await deleteAllVideos();
-        await deleteToGallery();
         final result = await ImageGallerySaver.saveImage(
             Uint8List.fromList(response.bodyBytes));
         return true;
@@ -25,8 +23,6 @@ class Save2Gallery {
       }
     } else if (contentType.contains('video')) {
       if (response.statusCode == 200) {
-        await deleteAllVideos();
-        await deleteToGallery();
         final appDocDirectory = await getExternalStorageDirectory();
         String fileName = path.basename(url);
         final dio = Dio();

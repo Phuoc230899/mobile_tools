@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wi_tools/screens/download_image/download_image_screen.dart';
+import 'package:wi_tools/screens/download_image/test.dart';
+import 'package:wi_tools/utils/local_notifications.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await LocalNotification.init();
   runApp(const MyApp());
 }
 
@@ -21,12 +25,12 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Wi tools',
           theme: ThemeData(
-            primarySwatch: Colors.deepPurple,
+            primarySwatch: Colors.blue,
           ),
           home: child,
         );
       },
-      child:const DownloadImageScreen(),
+      child: const TestScreen(),
     );
   }
 }

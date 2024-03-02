@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:giatla_sv/components/persistent_nav.dart';
+import 'package:giatla_sv/screens/account/account_screen.dart';
+import 'package:giatla_sv/screens/home/component/nav_bar.dart';
+import 'package:giatla_sv/screens/transaction/transaction_screen.dart';
 import 'package:giatla_sv/utils/custom_paint.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:ticket_widget/ticket_widget.dart';
 
 class HomePageScreen extends StatefulWidget {
@@ -21,11 +27,22 @@ class _HomePageScreenState extends State<HomePageScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SvgPicture.asset(
-              'assets/images/washing-machine.svg',
-              width: 50.w,
-              height: 50.h,
-            ),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              SvgPicture.asset(
+                'assets/images/washing-machine.svg',
+                width: 50.w,
+                height: 50.h,
+              ),
+              Center(
+                child: IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.bar_chart_rounded,
+                      color: Colors.white,
+                      size: 40.h,
+                    )),
+              )
+            ]),
             SizedBox(
               height: 5.h,
             ),
@@ -57,7 +74,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsets.only(left: 16.w, right: 16.w, top: 16.h),
+                          EdgeInsets.only(left: 12.w, right: 12.w, top: 12.h),
                       child: Row(children: [
                         Icon(
                           Icons.star,
@@ -81,8 +98,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
                     ),
                     Padding(
                       padding: EdgeInsets.only(
-                        left: 16.w,
-                        right: 16.w,
+                        left: 12.w,
+                        right: 12.w,
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -91,7 +108,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                             'Thanh toán hóa đơn',
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 14.h,
+                                fontSize: 13.h,
                                 fontWeight: FontWeight.w500),
                           ),
                           TicketWidget(
@@ -99,11 +116,12 @@ class _HomePageScreenState extends State<HomePageScreen> {
                             height: 20.h,
                             color: const Color(0xFF24913E),
                             isCornerRounded: true,
-                            child: const Center(
+                            child: Center(
                                 child: Text(
                               "-50%",
                               style: TextStyle(
                                   color: Colors.white,
+                                  fontSize: 12.h,
                                   fontWeight: FontWeight.bold),
                             )),
                           ),
@@ -121,8 +139,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
                     ),
                     Padding(
                       padding: EdgeInsets.only(
-                        left: 16.w,
-                        right: 16.w,
+                        left: 12.w,
+                        right: 12.w,
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -131,7 +149,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                             'Càng dùng nhiều càng lợi nhiều',
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 14.h,
+                                fontSize: 13.h,
                                 fontWeight: FontWeight.w500),
                           ),
                           TicketWidget(
@@ -139,11 +157,12 @@ class _HomePageScreenState extends State<HomePageScreen> {
                             height: 20.h,
                             color: const Color(0xFF24913E),
                             isCornerRounded: true,
-                            child: const Center(
+                            child: Center(
                                 child: Text(
                               "-30%",
                               style: TextStyle(
                                   color: Colors.white,
+                                  fontSize: 12.h,
                                   fontWeight: FontWeight.bold),
                             )),
                           ),
@@ -151,34 +170,11 @@ class _HomePageScreenState extends State<HomePageScreen> {
                       ),
                     ),
                   ]),
-            )
+            ),
           ],
         ),
       ),
-      // bottomNavigationBar: BottomAppBar(
-      //   child: ,
-      //   items: const <BottomNavigationBarItem>[
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.person,color: Colors.black,),
-      //       label: 'Tài Khoản',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.share,color: Colors.black,),
-      //       label: 'Giao Dịch',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.star,color: Colors.black,),
-      //       label: 'Ưu Đãi',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.more_horiz,color: Colors.black,),
-      //       label: 'Khác',
-      //     ),
-      //   ],
-      //   // currentIndex: _selectedIndex,
-      //   selectedItemColor: Colors.white,
-      //   // onTap: _onItemTapped,
-      // ),
+      bottomNavigationBar: NavBarWidget(),
     );
   }
 }

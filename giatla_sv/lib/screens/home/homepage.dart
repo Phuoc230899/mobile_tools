@@ -47,12 +47,23 @@ class _HomePageScreenState extends State<HomePageScreen> {
             SizedBox(
               height: 5.h,
             ),
-            Text(
-              "Giặt Là SV!",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25.h,
-                  fontWeight: FontWeight.bold),
+            Text.rich(
+              TextSpan(
+                  text: "Giặt Là",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: "Open Sans",
+                      fontSize: 25.h,
+                      fontWeight: FontWeight.bold),
+                  children: [
+                    TextSpan(
+                        text: " SV",
+                        style: TextStyle(
+                            color: Colors.red,
+                            fontFamily: "Oleo Script",
+                            fontSize: 25.h,
+                            fontWeight: FontWeight.bold))
+                  ]),
             ),
             SizedBox(
               height: 10.h,

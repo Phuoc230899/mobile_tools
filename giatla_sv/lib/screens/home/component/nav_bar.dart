@@ -1,17 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:giatla_sv/components/persistent_nav.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+import 'package:giatla_sv/services/local_auth_service.dart';
+import 'package:local_auth/local_auth.dart';
 
-class NavBarWidget extends StatelessWidget {
+class NavBarWidget extends StatefulWidget {
   const NavBarWidget({super.key});
+
+  @override
+  State<NavBarWidget> createState() => _NavBarWidgetState();
+}
+
+class _NavBarWidgetState extends State<NavBarWidget> {
+  late LocalAuthentication auth;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    auth = LocalAuthentication();
+  }
+
+  Future<bool> _authenticate() async {
+    try {
+      bool authenticated = await auth.authenticate(
+        localizedReason: "Check pass",
+        options:
+            const AuthenticationOptions(stickyAuth: true, biometricOnly: false),
+      );
+      return authenticated;
+    } on PlatformException catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    void navPushScreen(int index) => Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (context) => PresistentTabScreen(index: index)),
-      );
+    void navPushScreen(int index) async {
+      bool authenticated = await _authenticate();
+      if (authenticated) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) => PresistentTabScreen(index: index)),
+        );
+      }
+    }
 
     return ClipRRect(
       borderRadius: const BorderRadius.only(

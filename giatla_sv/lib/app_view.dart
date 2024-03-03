@@ -22,7 +22,7 @@ class _MyAppViewState extends State<MyAppView> {
           debugShowCheckedModeBanner: false,
           title: 'Giặt là SV',
           theme: ThemeData(
-            primarySwatch: Colors.lightGreen,
+            primaryColor: Colors.black,
           ),
           home: child,
         );

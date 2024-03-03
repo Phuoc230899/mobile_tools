@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:giatla_sv/screens/account/account_screen.dart';
+import 'package:giatla_sv/screens/bookmark/bookmark_screen.dart';
+import 'package:giatla_sv/screens/notification/notification_screen.dart';
+import 'package:giatla_sv/screens/setting_screen/setting_screen.dart';
 import 'package:giatla_sv/screens/transaction/transaction_screen.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class PresistentTabScreen extends StatefulWidget {
-  const PresistentTabScreen({super.key});
+  int index;
+  PresistentTabScreen({super.key, required this.index});
 
   @override
   State<PresistentTabScreen> createState() => _PresistentTabScreenState();
@@ -17,24 +20,48 @@ class _PresistentTabScreenState extends State<PresistentTabScreen> {
   @override
   void initState() {
     super.initState();
-    _controller = PersistentTabController(initialIndex: 1);
+    _controller = PersistentTabController(initialIndex: widget.index);
   }
 
   List<Widget> _buildScreens() {
-    return [const AccountScreen(), const TransactionScreen()];
+    return [
+      const AccountScreen(),
+      const TransactionScreen(),
+      const BookMarkScreen(),
+      const NotificationScreen(),
+      const SettingScreen()
+    ];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: const FaIcon(FontAwesomeIcons.person),
+        icon: const Icon(Icons.person),
         title: "Tài khoản",
         activeColorPrimary: Colors.black,
         inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
-        icon: const FaIcon(FontAwesomeIcons.share),
+        icon: const Icon(Icons.share),
         title: "Giao dịch",
+        activeColorPrimary: Colors.black,
+        inactiveColorPrimary: Colors.grey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(Icons.bookmark),
+        title: "Đã lưu",
+        activeColorPrimary: Colors.black,
+        inactiveColorPrimary: Colors.grey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(Icons.notifications),
+        title: "Thông báo",
+        activeColorPrimary: Colors.black,
+        inactiveColorPrimary: Colors.grey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(Icons.settings),
+        title: "Cài đặt",
         activeColorPrimary: Colors.black,
         inactiveColorPrimary: Colors.grey,
       ),
@@ -61,21 +88,19 @@ class _PresistentTabScreenState extends State<PresistentTabScreen> {
           colorBehindNavBar: Colors.white,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.5),
-              spreadRadius: 3,
-              blurRadius: 3,
-              offset: Offset(
-                  0, 3)
-            ),
+                color: Colors.black.withOpacity(0.5),
+                spreadRadius: 3,
+                blurRadius: 3,
+                offset: Offset(0, 3)),
           ]),
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
-      itemAnimationProperties: ItemAnimationProperties(
+      itemAnimationProperties: const ItemAnimationProperties(
         // Navigation Bar's items animation properties.
         duration: Duration(milliseconds: 200),
         curve: Curves.ease,
       ),
-      screenTransitionAnimation: ScreenTransitionAnimation(
+      screenTransitionAnimation: const ScreenTransitionAnimation(
         // Screen transition animation on change of selected tab.
         animateTabTransition: true,
         curve: Curves.ease,

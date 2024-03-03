@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:giatla_sv/components/persistent_nav.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class NavBarWidget extends StatelessWidget {
-  NavBarWidget({super.key});
+  const NavBarWidget({super.key});
   @override
   Widget build(BuildContext context) {
+    void navPushScreen(int index) => Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (context) => PresistentTabScreen(index: index)),
+      );
+
     return ClipRRect(
-      borderRadius: BorderRadius.only(
+      borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20), topRight: Radius.circular(20)),
       child: BottomAppBar(
         shape: const CircularNotchedRectangle(),
@@ -32,31 +40,41 @@ class NavBarWidget extends StatelessWidget {
                   // ]),
                   IconButton(
                     icon: const Icon(Icons.person),
-                    onPressed: () {},
+                    onPressed: () {
+                      navPushScreen(0);
+                    },
                     color: Colors.black,
                     iconSize: 25.h,
                   ),
                   IconButton(
                     icon: const Icon(Icons.share),
-                    onPressed: () {},
+                    onPressed: () {
+                      navPushScreen(1);
+                    },
                     color: Colors.black,
                     iconSize: 25.h,
                   ),
                   IconButton(
                     icon: const Icon(Icons.bookmark),
-                    onPressed: () {},
+                    onPressed: () {
+                      navPushScreen(2);
+                    },
                     color: Colors.black,
                     iconSize: 25.h,
                   ),
                   IconButton(
                     icon: const Icon(Icons.notifications),
-                    onPressed: () {},
+                    onPressed: () {
+                      navPushScreen(3);
+                    },
                     color: Colors.black,
                     iconSize: 25.h,
                   ),
                   IconButton(
                     icon: const Icon(Icons.settings),
-                    onPressed: () {},
+                    onPressed: () {
+                      navPushScreen(4);
+                    },
                     color: Colors.black,
                     iconSize: 25.h,
                   ),

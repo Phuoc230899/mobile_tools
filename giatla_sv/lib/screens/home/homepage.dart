@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:giatla_sv/components/persistent_nav.dart';
-import 'package:giatla_sv/screens/account/account_screen.dart';
 import 'package:giatla_sv/screens/home/component/nav_bar.dart';
-import 'package:giatla_sv/screens/transaction/transaction_screen.dart';
-import 'package:giatla_sv/utils/custom_paint.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:ticket_widget/ticket_widget.dart';
 
 class HomePageScreen extends StatefulWidget {

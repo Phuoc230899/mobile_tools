@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:giatla_sv/components/persistent_nav.dart';
 import 'package:giatla_sv/screens/splash/splash_screen.dart';
@@ -24,6 +25,7 @@ class _MyAppViewState extends State<MyAppView> {
           theme: ThemeData(
             primaryColor: Colors.black,
           ),
+          builder: EasyLoading.init(),
           home: child,
         );
       },

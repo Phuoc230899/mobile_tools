@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen>
     // TODO: implement initState
     super.initState();
     controller =
-        AnimationController(duration: const Duration(seconds: 3), vsync: this);
+        AnimationController(duration: const Duration(seconds: 1), vsync: this);
     opacity = Tween<double>(begin: 1.0, end: 1.0).animate(controller)
       ..addListener(() {
         setState(() {});

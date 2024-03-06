@@ -39,14 +39,14 @@ class _NavBarWidgetState extends State<NavBarWidget> {
   @override
   Widget build(BuildContext context) {
     void navPushScreen(int index) async {
-      bool authenticated = await _authenticate();
-      if (authenticated) {
+      // bool authenticated = await _authenticate();
+      // if (authenticated) {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
               builder: (context) => PresistentTabScreen(index: index)),
         );
-      }
+      // }
     }
 
     return ClipRRect(

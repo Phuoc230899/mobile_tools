@@ -1,5 +1,6 @@
 import 'package:clipboard_watcher/clipboard_watcher.dart';
 import 'package:crawl_tiktokshop/clipboard.dart';
+import 'package:crawl_tiktokshop/local_notification.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -14,28 +15,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> with ClipboardListener {
   String _clipboardData = '';
   static const platform = MethodChannel('clipboard_service');
-  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
-
-  void _initializeNotifications() {
-    var initializationSettingsAndroid =
-        AndroidInitializationSettings('@mipmap/ic_launcher');
-    var initializationSettings =
-        InitializationSettings(android: initializationSettingsAndroid);
-    flutterLocalNotificationsPlugin.initialize(initializationSettings);
-  }
-
-  void _showNotification(String title, String message) async {
-    var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-        'clipboard_channel_id', 'Clipboard Channel',
-        importance: Importance.defaultImportance,
-        priority: Priority.defaultPriority,
-        ticker: 'ticker');
-    var platformChannelSpecifics =
-        NotificationDetails(android: androidPlatformChannelSpecifics);
-    await flutterLocalNotificationsPlugin.show(
-        0, title, message, platformChannelSpecifics);
-  }
 
   @override
   void initState() {
@@ -73,14 +52,26 @@ class _HomePageState extends State<HomePage> with ClipboardListener {
               onPressed: () {
                 // clipboardWatcher.start();
                 ClipboardService.startService();
-                _showNotification(
-                    'Clipboard content changed', ClipboardService.init());
+                LocalNotifications.showSimpleNotification(
+                    title: "Notifications",
+                    body: ClipboardService.init(),
+                    payload: "simple data");
               },
             ),
             ElevatedButton(
               child: const Text('stop'),
               onPressed: () {
                 clipboardWatcher.stop();
+              },
+            ),
+
+            ElevatedButton(
+              child: const Text('Noti'),
+              onPressed: () {
+                LocalNotifications.showSimpleNotification(
+                    title: "Notifications",
+                    body: "test",
+                    payload: "simple data");
               },
             ),
           ],

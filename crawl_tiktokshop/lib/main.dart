@@ -1,7 +1,10 @@
 import 'package:crawl_tiktokshop/homepage.dart';
+import 'package:crawl_tiktokshop/local_notification.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await LocalNotifications.init();
   runApp(const MyApp());
 }
 
@@ -21,5 +24,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-

@@ -1,0 +1,34 @@
+import 'package:fashion_app/screens/homepage/homepage.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+class MyAppView extends StatefulWidget {
+  const MyAppView({super.key});
+
+  @override
+  State<MyAppView> createState() => _MyAppViewState();
+}
+
+class _MyAppViewState extends State<MyAppView> {
+  @override
+  Widget build(BuildContext context) {
+    return ScreenUtilInit(
+      designSize: const Size(360, 690),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (_, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Giặt là SV',
+          theme: ThemeData(
+            primaryColor: Colors.black,
+          ),
+          builder: EasyLoading.init(),
+          home: child,
+        );
+      },
+      child: const HomeScreen(),
+    );
+  }
+}

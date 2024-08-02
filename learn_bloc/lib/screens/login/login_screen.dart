@@ -104,7 +104,8 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 48.h),
                 decoration: BoxDecoration(
-                    color: Colors.red, borderRadius: BorderRadius.circular(24)),
+                  border: Border.all(),
+                    color: Colors.transparent, borderRadius: BorderRadius.circular(24)),
                 child: _buidInitialLoginWidget(),
               ),
             )
